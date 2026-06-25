@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Картка-рятівник — пошук квартири польською</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  :root {
+    --ink: #1c1c1e; --muted: #6b6b73; --line: #e0ddd6;
+    --pl: #1a4f7a;
+    --g: #15803d; --g-bg: #f0fdf4;
+    --b: #1a4f7a; --b-bg: #eef5fb;
+    --a: #b45309; --a-bg: #fef6e7;
+    --p: #7c3aed; --p-bg: #f5f1fe;
+    --k: #be185d; --k-bg: #fdf2f8;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: var(--ink); background: #faf9f7; line-height: 1.4;
+    max-width: 880px; margin: 0 auto; padding: 1.25rem;
+  }
+  header {
+    text-align: center; border-bottom: 2px solid var(--pl); padding-bottom: 0.6rem; margin-bottom: 0.9rem;
+  }
+  h1 { font-size: 1.5rem; color: var(--pl); letter-spacing: -0.01em; }
+  .sub { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .opener {
+    background: var(--g-bg); border: 1.5px solid var(--g); border-radius: 8px;
+    padding: 0.5rem 0.8rem; margin-bottom: 0.9rem; font-size: 0.9rem; text-align: center;
+  }
+  .opener b { color: var(--g); }
+  .grid { column-count: 2; column-gap: 0.9rem; }
+  @media (max-width: 620px) { .grid { column-count: 1; } }
+  .box {
+    break-inside: avoid; border-radius: 8px; padding: 0.6rem 0.75rem;
+    margin-bottom: 0.9rem; border-left: 4px solid;
+  }
+  .box h2 {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em;
+    margin-bottom: 0.45rem;
+  }
+  .box.green  { background: var(--g-bg); border-color: var(--g); }
+  .box.green h2  { color: var(--g); }
+  .box.blue   { background: var(--b-bg); border-color: var(--b); }
+  .box.blue h2   { color: var(--b); }
+  .box.amber  { background: var(--a-bg); border-color: var(--a); }
+  .box.amber h2  { color: var(--a); }
+  .box.purple { background: var(--p-bg); border-color: var(--p); }
+  .box.purple h2 { color: var(--p); }
+  .box.pink   { background: var(--k-bg); border-color: var(--k); }
+  .box.pink h2   { color: var(--k); }
+  .row { margin-bottom: 0.35rem; font-size: 0.85rem; }
+  .row:last-child { margin-bottom: 0; }
+  .row .p { font-weight: bold; color: var(--pl); }
+  .row .u { color: var(--muted); font-size: 0.78rem; }
+  .anchors { display: grid; grid-template-columns: 1fr 1fr; gap: 1px 0.75rem; font-size: 0.8rem; }
+  .anchors b { color: var(--pl); }
+  .ladder { font-size: 0.82rem; }
+  .ladder b { color: var(--pl); }
+  .tip { font-size: 0.74rem; color: var(--a); margin-top: 0.4rem; font-style: italic; }
+  .print-hint { text-align: center; font-size: 0.72rem; color: var(--muted); margin-top: 0.6rem; }
+  @media print {
+    body { background: white; padding: 0; max-width: none; }
+    .print-hint { display: none; }
+    @page { margin: 1cm; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🆘 Karta ratunkowa — szukanie mieszkania</h1>
+  <div class="sub">Шпаргалка на дзвінок орендодавцю · тримай у телефоні</div>
+</header>
+
+<div class="opener">
+  Почни з цього — і з тобою говоритимуть повільніше:<br>
+  <b>Dzień dobry, dzwonię w sprawie mieszkania. Uczę się polskiego, proszę mówić wolniej.</b>
+</div>
+
+<div class="grid">
+
+  <div class="box green">
+    <h2>① Твої питання</h2>
+    <div class="row"><div class="p">Czy mieszkanie jest jeszcze wolne?</div><div class="u">Квартира ще вільна?</div></div>
+    <div class="row"><div class="p">Ile wynosi czynsz?</div><div class="u">Скільки оренда?</div></div>
+    <div class="row"><div class="p">Czy media są wliczone czy osobno?</div><div class="u">Комуналка включена чи окремо?</div></div>
+    <div class="row"><div class="p">Czy mieszkanie jest umeblowane?</div><div class="u">З меблями?</div></div>
+    <div class="row"><div class="p">Ile wynosi kaucja?</div><div class="u">Скільки застава?</div></div>
+    <div class="row"><div class="p">Od kiedy jest dostępne?</div><div class="u">З якого числа вільна?</div></div>
+    <div class="row"><div class="p">Czy mogę obejrzeć w sobotę?</div><div class="u">Можу подивитись у суботу?</div></div>
+    <div class="row"><div class="p">Gdzie znajduje się mieszkanie?</div><div class="u">Де знаходиться?</div></div>
+  </div>
+
+  <div class="box blue">
+    <h2>② Слухай ці 12 слів (зміст у них)</h2>
+    <div class="anchors">
+      <div><b>wolne</b> — вільна</div>
+      <div><b>zajęte</b> — зайнята</div>
+      <div><b>wynosi</b> — становить</div>
+      <div><b>plus / dochodzą</b> — додається</div>
+      <div><b>kaucja</b> — застава</div>
+      <div><b>media</b> — комуналка</div>
+      <div><b>umeblowane</b> — з меблями</div>
+      <div><b>po remoncie</b> — після ремонту</div>
+      <div><b>piętro</b> — поверх</div>
+      <div><b>umowa</b> — договір</div>
+      <div><b>dokumenty</b> — документи</div>
+      <div><b>od + дата</b> — з (числа)</div>
+    </div>
+  </div>
+
+  <div class="box amber">
+    <h2>③ Якщо не зрозумів (рятівні!)</h2>
+    <div class="row"><div class="p">Czy może Pan/Pani mówić wolniej?</div><div class="u">Можете повільніше?</div></div>
+    <div class="row"><div class="p">Czy może Pan/Pani powtórzyć?</div><div class="u">Можете повторити?</div></div>
+    <div class="row"><div class="p">Nie zrozumiałem.</div><div class="u">Я не зрозумів.</div></div>
+    <div class="row"><div class="p">Co to znaczy?</div><div class="u">Що це означає?</div></div>
+    <div class="row"><div class="p">Czyli …, tak?</div><div class="u">Тобто …, так? (повтори число!)</div></div>
+    <div class="row"><div class="p">Czy możemy pisać na WhatsApp?</div><div class="u">Можемо писати у WhatsApp?</div></div>
+    <div class="tip">Застрягнув? Будь-яка з цих фраз рятує. Перейти на текст — завжди можна.</div>
+  </div>
+
+  <div class="box purple">
+    <h2>④ Числа й гроші</h2>
+    <div class="ladder">
+      <div><b>2400</b> dwa tysiące czterysta</div>
+      <div><b>2500</b> dwa tysiące pięćset</div>
+      <div><b>2600</b> dwa tysiące sześćset</div>
+      <div><b>2700</b> dwa tysiące siedemset</div>
+      <div><b>2800</b> dwa tysiące osiemset</div>
+      <div><b>2900</b> dwa tysiące dziewięćset</div>
+      <div><b>3000</b> trzy tysiące</div>
+    </div>
+    <div class="tip">Media: 600–1000 (sześćset–tysiąc). Реальна сума ≈ czynsz + media.</div>
+  </div>
+
+  <div class="box pink">
+    <h2>⑤ Дні · час · дата</h2>
+    <div class="row"><div class="p">poniedziałek · wtorek · środa</div><div class="u">пн · вт · ср</div></div>
+    <div class="row"><div class="p">czwartek · piątek · sobota · niedziela</div><div class="u">чт · пт · сб · нд</div></div>
+    <div class="row"><div class="p">rano · po południu · wieczorem</div><div class="u">вранці · по обіді · ввечері</div></div>
+    <div class="row"><div class="p">o piętnastej / siedemnastej</div><div class="u">о 15:00 / 17:00</div></div>
+    <div class="row"><div class="p">od pierwszego (lipca / sierpnia)</div><div class="u">з першого (липня / серпня)</div></div>
+  </div>
+
+  <div class="box green">
+    <h2>⑥ Про себе + закриття</h2>
+    <div class="row"><div class="p">Mam umowę o pracę.</div><div class="u">Маю трудовий договір.</div></div>
+    <div class="row"><div class="p">Jestem zainteresowany.</div><div class="u">Я зацікавлений.</div></div>
+    <div class="row"><div class="p">Pasuje mi w sobotę.</div><div class="u">Мені зручно в суботу.</div></div>
+    <div class="row"><div class="p">Dziękuję, do widzenia!</div><div class="u">Дякую, до побачення!</div></div>
+  </div>
+
+</div>
+
+<div class="print-hint">Ctrl/Cmd + P, щоб роздрукувати на одну сторінку · Урок 7 курсу</div>
+
+</body>
+</html>

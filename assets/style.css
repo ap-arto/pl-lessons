@@ -1,0 +1,608 @@
+/* =====================================================
+   Shared Lesson Stylesheet — Polish Apartment Course
+   ===================================================== */
+
+:root {
+  --bg:           #faf9f7;
+  --bg-surface:   #f2f0ec;
+  --text:         #1c1c1e;
+  --text-muted:   #6b6b73;
+  --accent:       #1a4f7a;
+  --accent-light: #e8f1f8;
+  --polish:       #dbeafe;
+  --polish-b:     #3b82f6;
+  --cognate:      #dcfce7;
+  --cognate-b:    #22c55e;
+  --correct:      #15803d;
+  --correct-bg:   #f0fdf4;
+  --wrong:        #b91c1c;
+  --wrong-bg:     #fef2f2;
+  --border:       #e5e2db;
+
+  --serif:  Georgia, 'Palatino Linotype', Palatino, serif;
+  --sans:   -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body, h1, h2, h3, p, ul, ol, table { margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+}
+
+/* ── Header ── */
+.lesson-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.lesson-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+}
+
+.lesson-meta a {
+  color: var(--accent);
+  text-decoration: none;
+  margin-left: auto;
+}
+.lesson-meta a:hover { text-decoration: underline; }
+
+h1 {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--accent);
+}
+
+.lesson-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+/* ── Section headings ── */
+h2 {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Intro ── */
+.intro p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.cognate-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--cognate);
+  border-left: 3px solid var(--cognate-b);
+  padding: 0.4rem 0.75rem;
+  border-radius: 0 4px 4px 0;
+  font-family: var(--sans);
+  font-size: 0.84rem;
+  margin-top: 0.5rem;
+}
+
+/* ── Vocabulary table ── */
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.96rem;
+}
+
+.vocab-table th {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.vocab-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--bg-surface);
+  vertical-align: top;
+}
+
+.vocab-table tr:last-child td { border-bottom: none; }
+
+.pl-word {
+  font-weight: bold;
+  font-size: 1.05rem;
+  color: var(--accent);
+}
+
+.pronunciation {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.uk-word { color: var(--text); }
+
+.cognate-marker {
+  display: inline-block;
+  background: var(--cognate);
+  border: 1px solid var(--cognate-b);
+  color: var(--correct);
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+/* ── Phrase list ── */
+.phrase-list {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+.phrase-list li {
+  border-bottom: 1px solid var(--border);
+  padding: 0.7rem 0;
+}
+
+.phrase-list li:last-child { border-bottom: none; }
+
+.phrase-pl {
+  font-weight: bold;
+  color: var(--accent);
+  font-size: 1.02rem;
+}
+
+.phrase-uk {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Keyword highlight — the "anchor word" to listen for in a sentence */
+.anchor {
+  background: #fff3cd;
+  border-radius: 3px;
+  padding: 0 4px;
+  box-shadow: inset 0 -2px 0 #f0c14b;
+}
+
+/* Compact box listing the high-value anchor words to memorize */
+.anchor-box {
+  background: var(--cognate);
+  border-left: 3px solid var(--cognate-b);
+  border-radius: 0 6px 6px 0;
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+}
+
+.anchor-box ul {
+  list-style: none;
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.3rem 1.25rem;
+}
+
+.anchor-box li { line-height: 1.5; }
+
+.anchor-box b { color: var(--accent); }
+
+@media (max-width: 500px) {
+  .anchor-box ul { grid-template-columns: 1fr; }
+}
+
+/* ── Callout ── */
+.callout {
+  background: var(--accent-light);
+  border-left: 3px solid var(--accent);
+  padding: 0.6rem 1rem;
+  border-radius: 0 4px 4px 0;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--text);
+  margin-top: 1.5rem;
+}
+
+/* ── Dialogue (roleplay / model call) ── */
+.dialogue {
+  margin-top: 1rem;
+}
+
+.turn {
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
+  max-width: 88%;
+}
+
+.turn .speaker {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+
+.turn .pl { font-weight: bold; color: var(--accent); }
+
+.turn .uk {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.turn .note {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--correct);
+  margin-top: 4px;
+}
+
+.turn.you {
+  background: var(--accent-light);
+  margin-left: auto;
+  border-bottom-right-radius: 2px;
+}
+
+.turn.them {
+  background: var(--bg-surface);
+  margin-right: auto;
+  border-bottom-left-radius: 2px;
+}
+
+/* ── Quiz section ── */
+#quiz-section {
+  margin-top: 3rem;
+  background: var(--bg-surface);
+  border-radius: 8px;
+  padding: 1.75rem;
+}
+
+#quiz-section h2 { margin-top: 0; }
+
+.quiz-intro {
+  font-family: var(--sans);
+  font-size: 0.87rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.quiz-progress {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.quiz-question-card {
+  background: white;
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+}
+
+.quiz-prompt {
+  font-size: 0.78rem;
+  font-family: var(--sans);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-word {
+  font-size: 2.1rem;
+  font-weight: bold;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+  line-height: 1;
+}
+
+/* Focal variant for full-sentence scenarios (Ukrainian situation prompts) */
+.quiz-scenario {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  list-style: none;
+}
+
+/* Stacked, left-aligned options for longer (full-phrase) answers */
+.quiz-options.list {
+  grid-template-columns: 1fr;
+}
+
+.quiz-options.list .quiz-option {
+  text-align: left;
+}
+
+.quiz-option {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s;
+  text-align: center;
+  user-select: none;
+}
+
+.quiz-option:hover:not(.answered) {
+  border-color: var(--polish-b);
+  background: var(--polish);
+}
+
+.quiz-option.correct {
+  background: var(--correct-bg);
+  border-color: var(--correct);
+  color: var(--correct);
+  font-weight: bold;
+}
+
+.quiz-option.wrong {
+  background: var(--wrong-bg);
+  border-color: var(--wrong);
+  color: var(--wrong);
+}
+
+.quiz-feedback {
+  margin-top: 1rem;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  min-height: 1.4em;
+  line-height: 1.4;
+}
+
+.quiz-feedback.correct { color: var(--correct); }
+.quiz-feedback.wrong   { color: var(--wrong); }
+
+.quiz-next-btn {
+  display: none;
+  margin-top: 1rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.55rem 1.25rem;
+  font-family: var(--sans);
+  font-size: 0.93rem;
+  cursor: pointer;
+  transition: opacity 0.12s;
+}
+
+.quiz-next-btn:hover { opacity: 0.85; }
+
+.quiz-score {
+  text-align: center;
+  font-family: var(--sans);
+  padding: 1rem 0;
+}
+
+.score-number {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+}
+
+.quiz-restart-btn {
+  margin-top: 1.25rem;
+  background: var(--bg);
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  border-radius: 5px;
+  padding: 0.55rem 1.25rem;
+  font-family: var(--sans);
+  font-size: 0.93rem;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.quiz-restart-btn:hover { background: var(--accent-light); }
+
+/* ── Footer ── */
+.lesson-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lesson-footer a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.lesson-footer a:hover { text-decoration: underline; }
+
+.lesson-footer .nav-prev { color: var(--text-muted); }
+
+/* ── Responsive ── */
+@media (max-width: 500px) {
+  body { font-size: 1rem; padding: 1.25rem 1rem 4rem; }
+  h1 { font-size: 2rem; }
+  .quiz-options { grid-template-columns: 1fr; }
+  .quiz-word { font-size: 1.7rem; }
+}
+
+/* =====================================================
+   Course landing page (index.html)
+   ===================================================== */
+
+.course-intro {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+}
+
+/* Prominent cheat-sheet card — the single highest-value artifact */
+.cheat-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--cognate);
+  border: 1px solid var(--cognate-b);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2.25rem;
+  font-family: var(--sans);
+  transition: box-shadow 0.12s, transform 0.12s;
+}
+.cheat-card:hover {
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+.cheat-card .cheat-title {
+  font-weight: 700;
+  color: var(--correct);
+  font-size: 1.02rem;
+}
+.cheat-card .cheat-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.course-list-label {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.course-list {
+  list-style: none;
+}
+
+.lesson-card {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding-left 0.12s;
+}
+.lesson-card:hover {
+  padding-left: 0.4rem;
+}
+.lesson-card:hover .lesson-card-title { text-decoration: underline; }
+.lesson-card:last-child { border-bottom: none; }
+
+.lesson-card-num {
+  flex: 0 0 auto;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-light);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lesson-card-body { flex: 1 1 auto; min-width: 0; }
+
+.lesson-card-title {
+  font-size: 1.15rem;
+  color: var(--accent);
+  line-height: 1.25;
+}
+
+.lesson-card-sub {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.lesson-card-time {
+  flex: 0 0 auto;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+@media (max-width: 500px) {
+  .lesson-card-time { display: none; }
+}
