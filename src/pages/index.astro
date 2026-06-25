@@ -62,19 +62,26 @@ const totalHours = '≈ 3 години';
     <script>
       // Reflect per-lesson completion (localStorage) on the landing cards.
       const KEY = 'pl-lessons:completed';
-      let done = [];
-      try { done = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch {}
-      const set = new Set(done);
       const cards = document.querySelectorAll('.lesson-card[data-slug]');
-      let count = 0;
-      cards.forEach((c) => {
-        if (set.has(c.getAttribute('data-slug'))) {
-          c.classList.add('is-done');
-          count++;
-        }
-      });
       const prog = document.querySelector('[data-progress]');
-      if (prog && count > 0) prog.textContent = `· пройдено ${count} / ${cards.length}`;
+
+      function apply() {
+        let done = [];
+        try { done = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch {}
+        const set = new Set(done);
+        let count = 0;
+        cards.forEach((c) => {
+          const isDone = set.has(c.getAttribute('data-slug'));
+          c.classList.toggle('is-done', isDone);
+          if (isDone) count++;
+        });
+        if (prog) prog.textContent = count > 0 ? `· пройдено ${count} / ${cards.length}` : '';
+      }
+
+      apply();
+      // Re-apply when returning via back/forward (bfcache restore) or a change in another tab.
+      window.addEventListener('pageshow', apply);
+      window.addEventListener('storage', apply);
     </script>
   </body>
 </html>
