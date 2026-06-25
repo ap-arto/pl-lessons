@@ -652,7 +652,21 @@ h2 {
   font-weight: 700;
 }
 .lesson-card.is-done .lesson-card-check { display: inline-flex; }
-.lesson-card.is-done .lesson-card-num {
+
+/* Completed card: clearly different colour (green) */
+.lesson-card.is-done {
   background: var(--correct-bg);
-  color: var(--correct);
+  border-radius: 8px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-bottom-color: transparent;
 }
+.lesson-card.is-done:hover {
+  padding-left: 0.75rem;
+  background: #e7f7ec;
+}
+.lesson-card.is-done .lesson-card-num {
+  background: var(--correct);
+  color: #fff;
+}
+.lesson-card.is-done .lesson-card-title { color: var(--correct); }
