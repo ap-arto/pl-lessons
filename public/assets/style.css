@@ -606,3 +606,53 @@ h2 {
 @media (max-width: 500px) {
   .lesson-card-time { display: none; }
 }
+
+/* ── Mark lesson complete (localStorage) ── */
+.lesson-complete {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.mark-complete {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0.6rem 1.4rem;
+  border-radius: 6px;
+  border: 1.5px solid var(--accent);
+  background: var(--bg);
+  color: var(--accent);
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.mark-complete:hover { background: var(--accent-light); }
+
+.mark-complete.is-done {
+  background: var(--correct-bg);
+  border-color: var(--correct);
+  color: var(--correct);
+  font-weight: 600;
+}
+.mark-complete.is-done:hover { background: #e7f7ec; }
+
+/* ── Landing: completion reflection ── */
+.course-progress {
+  font-family: var(--sans);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--correct);
+  font-size: 0.78rem;
+  margin-left: 0.3rem;
+}
+
+.lesson-card-check {
+  display: none;
+  flex: 0 0 auto;
+  color: var(--correct);
+  font-weight: 700;
+}
+.lesson-card.is-done .lesson-card-check { display: inline-flex; }
+.lesson-card.is-done .lesson-card-num {
+  background: var(--correct-bg);
+  color: var(--correct);
+}

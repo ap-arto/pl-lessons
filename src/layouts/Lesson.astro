@@ -39,10 +39,44 @@ const nextLabel = next ? `Урок ${next.num}: ${next.navLabel} →` : `${CHEAT
 
     <slot />
 
+    <div class="lesson-complete">
+      <button class="mark-complete" type="button" data-mark-complete data-slug={cur.slug} aria-pressed="false">
+        Позначити як пройдений
+      </button>
+    </div>
+
     <footer class="lesson-footer">
       {prev && <a class="nav-prev" href={lessonHref(prev.slug)}>← Урок {prev.num}: {prev.navLabel}</a>}
       <span>{cur.footerNote}</span>
       <a href={nextHref}>{nextLabel}</a>
     </footer>
+
+    <script>
+      // Per-lesson "mark/unmark as complete", persisted in localStorage.
+      const KEY = 'pl-lessons:completed';
+      const read = () => {
+        try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
+      };
+      const write = (arr) => localStorage.setItem(KEY, JSON.stringify(arr));
+
+      const btn = document.querySelector('[data-mark-complete]');
+      if (btn) {
+        const slug = btn.getAttribute('data-slug');
+        const render = (done) => {
+          btn.classList.toggle('is-done', done);
+          btn.setAttribute('aria-pressed', String(done));
+          btn.textContent = done ? '✓ Урок пройдено' : 'Позначити як пройдений';
+        };
+        let done = read().includes(slug);
+        render(done);
+        btn.addEventListener('click', () => {
+          done = !done;
+          const set = new Set(read());
+          if (done) set.add(slug); else set.delete(slug);
+          write([...set]);
+          render(done);
+        });
+      }
+    </script>
   </body>
 </html>

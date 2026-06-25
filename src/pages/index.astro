@@ -36,16 +36,17 @@ const totalHours = '≈ 3 години';
         <div class="cheat-sub">Друкована шпаргалка на одну сторінку — тримай під рукою під час розмови</div>
       </a>
 
-      <div class="course-list-label">Уроки</div>
+      <div class="course-list-label">Уроки <span class="course-progress" data-progress></span></div>
       <ul class="course-list">
         {lessons.map((l) => (
           <li>
-            <a class="lesson-card" href={lessonHref(l.slug)}>
+            <a class="lesson-card" href={lessonHref(l.slug)} data-slug={l.slug}>
               <span class="lesson-card-num">{l.num}</span>
               <span class="lesson-card-body">
                 <span class="lesson-card-title">{l.cardTitle}</span>
                 <span class="lesson-card-sub">{l.sub}</span>
               </span>
+              <span class="lesson-card-check" aria-hidden="true">✓</span>
               <span class="lesson-card-time">{l.dur}</span>
             </a>
           </li>
@@ -57,5 +58,23 @@ const totalHours = '≈ 3 години';
       <span>Powodzenia! 🍀 Успіхів у пошуку квартири.</span>
       <a href={cheatHref}>Картка-рятівник →</a>
     </footer>
+
+    <script>
+      // Reflect per-lesson completion (localStorage) on the landing cards.
+      const KEY = 'pl-lessons:completed';
+      let done = [];
+      try { done = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch {}
+      const set = new Set(done);
+      const cards = document.querySelectorAll('.lesson-card[data-slug]');
+      let count = 0;
+      cards.forEach((c) => {
+        if (set.has(c.getAttribute('data-slug'))) {
+          c.classList.add('is-done');
+          count++;
+        }
+      });
+      const prog = document.querySelector('[data-progress]');
+      if (prog && count > 0) prog.textContent = `· пройдено ${count} / ${cards.length}`;
+    </script>
   </body>
 </html>
