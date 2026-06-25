@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Урок 4 — Дати й домовленості</title>
-  <link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
-
-<header class="lesson-header">
-  <div class="lesson-meta">
-    <span>Урок 4 з 7</span>
-    <span>≈ 30 хвилин</span>
-    <a href="0005-understanding-landlords.html">Урок 5: Що каже орендодавець →</a>
-  </div>
-  <h1>Daty i terminy</h1>
-  <p class="lesson-subtitle">З якого числа вільна, коли прийти на огляд, на котру домовитись</p>
-</header>
-
+---
+import Lesson from '@layouts/Lesson.astro';
+---
+<Lesson slug="0004-dates-and-scheduling">
 <main>
 
   <section class="intro">
@@ -157,15 +141,7 @@
   </p>
 
 </main>
-
-<footer class="lesson-footer">
-  <a class="nav-prev" href="0003-numbers-prices-dates.html">← Урок 3: Числа й ціни</a>
-  <span>Хочеш відрепетирувати домовленість про огляд? Напиши мені — зіграємо діалог у чаті.</span>
-  <a href="0005-understanding-landlords.html">Урок 5: Що каже орендодавець →</a>
-</footer>
-
-<script src="../assets/quiz.js"></script>
-<script>
+<script is:inline>
 Quiz.render('quiz-container', [
   {
     focal: 'w sobotę',
@@ -225,6 +201,4 @@ Quiz.render('quiz-container', [
   defaultPrompt: 'Що це означає?'
 });
 </script>
-
-</body>
-</html>
+</Lesson>

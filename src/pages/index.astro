@@ -1,0 +1,61 @@
+---
+import { lessons, CHEAT } from '@data/lessons';
+
+const base = import.meta.env.BASE_URL;
+const cheatHref = `${base}${CHEAT.href}`;
+const lessonHref = (s: string) => `${base}lessons/${s}/`;
+const totalHours = '≈ 3 години';
+---
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Польська для пошуку квартири — міні-курс</title>
+    <link rel="stylesheet" href={`${base}assets/style.css`} />
+  </head>
+  <body>
+    <header class="lesson-header">
+      <div class="lesson-meta">
+        <span>Міні-курс</span>
+        <span>{lessons.length} уроків · {totalHours}</span>
+      </div>
+      <h1>Польська для пошуку квартири</h1>
+      <p class="lesson-subtitle">Від «dzień dobry» до домовленості про огляд — за тиждень</p>
+    </header>
+
+    <main>
+      <p class="course-intro">
+        Сім коротких уроків, щоб телефонувати орендодавцям, розуміти відповіді й домовлятись
+        про огляд польською. Кожен — на 20–30 хвилин, із таблицями, фразами й квізом наприкінці.
+        Спирайся на українську: багато слів — когнати.
+      </p>
+
+      <a class="cheat-card" href={cheatHref}>
+        <div class="cheat-title">🆘 Картка-рятівник для дзвінка</div>
+        <div class="cheat-sub">Друкована шпаргалка на одну сторінку — тримай під рукою під час розмови</div>
+      </a>
+
+      <div class="course-list-label">Уроки</div>
+      <ul class="course-list">
+        {lessons.map((l) => (
+          <li>
+            <a class="lesson-card" href={lessonHref(l.slug)}>
+              <span class="lesson-card-num">{l.num}</span>
+              <span class="lesson-card-body">
+                <span class="lesson-card-title">{l.cardTitle}</span>
+                <span class="lesson-card-sub">{l.sub}</span>
+              </span>
+              <span class="lesson-card-time">{l.dur}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </main>
+
+    <footer class="lesson-footer">
+      <span>Powodzenia! 🍀 Успіхів у пошуку квартири.</span>
+      <a href={cheatHref}>Картка-рятівник →</a>
+    </footer>
+  </body>
+</html>

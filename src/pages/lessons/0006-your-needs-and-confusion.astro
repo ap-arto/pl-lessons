@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Урок 6 — Твої потреби й нерозуміння</title>
-  <link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
-
-<header class="lesson-header">
-  <div class="lesson-meta">
-    <span>Урок 6 з 7</span>
-    <span>≈ 30 хвилин</span>
-    <a href="0007-review-and-roleplay.html">Урок 7: Повторення →</a>
-  </div>
-  <h1>Moje potrzeby i „nie rozumiem”</h1>
-  <p class="lesson-subtitle">Сказати, чого хочеш — і ніколи не застрягнути в розмові</p>
-</header>
-
+---
+import Lesson from '@layouts/Lesson.astro';
+---
+<Lesson slug="0006-your-needs-and-confusion">
 <main>
 
   <section class="intro">
@@ -148,15 +132,7 @@
   </p>
 
 </main>
-
-<footer class="lesson-footer">
-  <a class="nav-prev" href="0005-understanding-landlords.html">← Урок 5: Що каже орендодавець</a>
-  <span>Хочеш закріпити? Скажи мені будь-яку ситуацію — підкажу точну фразу-рятівник.</span>
-  <a href="0007-review-and-roleplay.html">Урок 7: Повторення й рольова гра →</a>
-</footer>
-
-<script src="../assets/quiz.js"></script>
-<script>
+<script is:inline>
 Quiz.render('quiz-container', [
   {
     focal: 'Орендодавець говорить надто швидко.',
@@ -218,6 +194,4 @@ Quiz.render('quiz-container', [
   optionsClass: 'list'
 });
 </script>
-
-</body>
-</html>
+</Lesson>

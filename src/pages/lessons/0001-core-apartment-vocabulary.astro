@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Урок 1 — Mieszkanie: ключова лексика</title>
-  <link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
-
-<header class="lesson-header">
-  <div class="lesson-meta">
-    <span>Урок 1 з 7</span>
-    <span>≈ 20 хвилин</span>
-    <a href="0002-essential-questions.html">Урок 2: Питання орендарю →</a>
-  </div>
-  <h1>Mieszkanie</h1>
-  <p class="lesson-subtitle">Слова, які ти почуєш і вимовиш при пошуку квартири</p>
-</header>
-
+---
+import Lesson from '@layouts/Lesson.astro';
+---
+<Lesson slug="0001-core-apartment-vocabulary">
 <main>
 
   <section class="intro">
@@ -222,14 +206,7 @@
   </section>
 
 </main>
-
-<footer class="lesson-footer">
-  <span>Є питання? Запитай свого вчителя в чаті — він пояснить будь-який момент.</span>
-  <a href="0002-essential-questions.html">Урок 2: Питання орендарю →</a>
-</footer>
-
-<script src="../assets/quiz.js"></script>
-<script>
+<script is:inline>
 Quiz.render('quiz-container', [
   {
     word: 'czynsz',
@@ -287,6 +264,4 @@ Quiz.render('quiz-container', [
   }
 ]);
 </script>
-
-</body>
-</html>
+</Lesson>

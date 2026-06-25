@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Урок 3 — Числа, ціни й дати</title>
-  <link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
-
-<header class="lesson-header">
-  <div class="lesson-meta">
-    <span>Урок 3 з 7</span>
-    <span>≈ 30 хвилин</span>
-    <a href="0004-dates-and-scheduling.html">Урок 4: Дати й домовленості →</a>
-  </div>
-  <h1>Liczby, ceny i daty</h1>
-  <p class="lesson-subtitle">Зрозуміти «1800 злотих плюс комунальні, від першого липня»</p>
-</header>
-
+---
+import Lesson from '@layouts/Lesson.astro';
+---
+<Lesson slug="0003-numbers-prices-dates">
 <main>
 
   <section class="intro">
@@ -202,15 +186,7 @@
   </p>
 
 </main>
-
-<footer class="lesson-footer">
-  <a class="nav-prev" href="0002-essential-questions.html">← Урок 2: Питання орендарю</a>
-  <span>Заплутався в числах? Напиши мені будь-яку ціну — розберемо її по цеглинках разом.</span>
-  <a href="0004-dates-and-scheduling.html">Урок 4: Дати й домовленості →</a>
-</footer>
-
-<script src="../assets/quiz.js"></script>
-<script>
+<script is:inline>
 Quiz.render('quiz-container', [
   {
     focal: 'tysiąc pięćset',
@@ -270,6 +246,4 @@ Quiz.render('quiz-container', [
   defaultPrompt: 'Що це означає?'
 });
 </script>
-
-</body>
-</html>
+</Lesson>

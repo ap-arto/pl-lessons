@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Урок 7 — Повний дзвінок: рольова гра</title>
-  <link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
-
-<header class="lesson-header">
-  <div class="lesson-meta">
-    <span>Урок 7 з 7 — фінал</span>
-    <span>≈ 30 хвилин</span>
-    <a href="../reference/karta-ratunkowa.html">🆘 Картка-рятівник →</a>
-  </div>
-  <h1>Pełna rozmowa</h1>
-  <p class="lesson-subtitle">Усе разом: дзвінок від «dzień dobry» до домовленості про огляд</p>
-</header>
-
+---
+import Lesson from '@layouts/Lesson.astro';
+---
+<Lesson slug="0007-review-and-roleplay">
 <main>
 
   <section class="intro">
@@ -177,15 +161,7 @@
   </div>
 
 </main>
-
-<footer class="lesson-footer">
-  <a class="nav-prev" href="0006-your-needs-and-confusion.html">← Урок 6: Твої потреби</a>
-  <span>Готовий до справжнього дзвінка? Опиши мені оголошення — зіграємо повну репетицію в чаті.</span>
-  <a href="../reference/karta-ratunkowa.html">🆘 Картка-рятівник →</a>
-</footer>
-
-<script src="../assets/quiz.js"></script>
-<script>
+<script is:inline>
 Quiz.render('quiz-container', [
   {
     focal: 'Орендодавець бере слухавку: «Dzień dobry, słucham?»',
@@ -253,6 +229,4 @@ Quiz.render('quiz-container', [
   optionsClass: 'list'
 });
 </script>
-
-</body>
-</html>
+</Lesson>

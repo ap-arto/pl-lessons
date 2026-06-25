@@ -1,0 +1,48 @@
+---
+import { lessons, CHEAT } from '@data/lessons';
+
+interface Props { slug: string }
+const { slug } = Astro.props;
+
+const base = import.meta.env.BASE_URL; // '/pl-lessons/'
+const i = lessons.findIndex((l) => l.slug === slug);
+const cur = lessons[i];
+const prev = i > 0 ? lessons[i - 1] : null;
+const next = i < lessons.length - 1 ? lessons[i + 1] : null;
+
+const lessonHref = (s: string) => `${base}lessons/${s}/`;
+const cheatHref = `${base}${CHEAT.href}`;
+
+const nextHref = next ? lessonHref(next.slug) : cheatHref;
+const nextLabel = next ? `Урок ${next.num}: ${next.navLabel} →` : `${CHEAT.label} →`;
+---
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Урок {cur.num} — {cur.pl}</title>
+    <link rel="stylesheet" href={`${base}assets/style.css`} />
+    <!-- Defines the global Quiz before each lesson's inline Quiz.render() call. -->
+    <script is:inline src={`${base}assets/quiz.js`}></script>
+  </head>
+  <body>
+    <header class="lesson-header">
+      <div class="lesson-meta">
+        <span>Урок {cur.num} з {lessons.length}</span>
+        <span>{cur.dur}</span>
+        <a href={nextHref}>{nextLabel}</a>
+      </div>
+      <h1>{cur.pl}</h1>
+      <p class="lesson-subtitle">{cur.sub}</p>
+    </header>
+
+    <slot />
+
+    <footer class="lesson-footer">
+      {prev && <a class="nav-prev" href={lessonHref(prev.slug)}>← Урок {prev.num}: {prev.navLabel}</a>}
+      <span>{cur.footerNote}</span>
+      <a href={nextHref}>{nextLabel}</a>
+    </footer>
+  </body>
+</html>
