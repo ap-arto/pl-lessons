@@ -581,12 +581,14 @@ h2 {
 .lesson-card-body { flex: 1 1 auto; min-width: 0; }
 
 .lesson-card-title {
+  display: block;
   font-size: 1.15rem;
   color: var(--accent);
   line-height: 1.25;
 }
 
 .lesson-card-sub {
+  display: block;
   font-family: var(--sans);
   font-size: 0.85rem;
   color: var(--text-muted);
