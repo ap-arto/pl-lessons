@@ -1,0 +1,31 @@
+---
+// The course lesson list as full cards. Reused on the landing page and inside
+// the mobile menu drawer. Pass `currentSlug` to mark the open lesson.
+import { lessons } from '@data/lessons';
+
+interface Props { currentSlug?: string }
+const { currentSlug } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const lessonHref = (s: string) => `${base}lessons/${s}/`;
+---
+<ul class="course-list">
+  {lessons.map((l) => (
+    <li>
+      <a
+        class:list={['lesson-card', { 'is-current': l.slug === currentSlug }]}
+        href={lessonHref(l.slug)}
+        data-slug={l.slug}
+        aria-current={l.slug === currentSlug ? 'page' : undefined}
+      >
+        <span class="lesson-card-num">{l.num}</span>
+        <span class="lesson-card-body">
+          <span class="lesson-card-title">{l.cardTitle}</span>
+          <span class="lesson-card-sub">{l.sub}</span>
+        </span>
+        <span class="lesson-card-check" aria-hidden="true">✓</span>
+        <span class="lesson-card-time">{l.dur}</span>
+      </a>
+    </li>
+  ))}
+</ul>

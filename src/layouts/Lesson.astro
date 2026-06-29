@@ -1,5 +1,6 @@
 ---
 import { lessons, CHEAT } from '@data/lessons';
+import Menu from '../components/Menu.astro';
 
 interface Props { slug: string }
 const { slug } = Astro.props;
@@ -27,6 +28,7 @@ const nextLabel = next ? `Урок ${next.num}: ${next.navLabel} →` : `${CHEAT
     <script is:inline src={`${base}assets/quiz.js`}></script>
   </head>
   <body>
+    <Menu currentSlug={cur.slug} />
     <header class="lesson-header">
       <div class="lesson-meta">
         <span>Урок {cur.num} з {lessons.length}</span>
@@ -54,15 +56,15 @@ const nextLabel = next ? `Урок ${next.num}: ${next.navLabel} →` : `${CHEAT
     <script>
       // Per-lesson "mark/unmark as complete", persisted in localStorage.
       const KEY = 'pl-lessons:completed';
-      const read = () => {
+      const read = (): string[] => {
         try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
       };
-      const write = (arr) => localStorage.setItem(KEY, JSON.stringify(arr));
+      const write = (arr: string[]) => localStorage.setItem(KEY, JSON.stringify(arr));
 
       const btn = document.querySelector('[data-mark-complete]');
       if (btn) {
-        const slug = btn.getAttribute('data-slug');
-        const render = (done) => {
+        const slug = btn.getAttribute('data-slug')!;
+        const render = (done: boolean) => {
           btn.classList.toggle('is-done', done);
           btn.setAttribute('aria-pressed', String(done));
           btn.textContent = done ? '✓ Урок пройдено' : 'Позначити як пройдений';
@@ -75,6 +77,9 @@ const nextLabel = next ? `Урок ${next.num}: ${next.navLabel} →` : `${CHEAT
           if (done) set.add(slug); else set.delete(slug);
           write([...set]);
           render(done);
+          // Let the drawer's reflection re-green the matching card immediately
+          // (the 'storage' event doesn't fire in the same tab).
+          window.dispatchEvent(new Event('pl-lessons:changed'));
         });
       }
     </script>

@@ -1,9 +1,10 @@
 ---
 import { lessons, CHEAT } from '@data/lessons';
+import LessonList from '../components/LessonList.astro';
+import Menu from '../components/Menu.astro';
 
 const base = import.meta.env.BASE_URL;
 const cheatHref = `${base}${CHEAT.href}`;
-const lessonHref = (s: string) => `${base}lessons/${s}/`;
 const totalHours = '≈ 3 години';
 ---
 <!doctype html>
@@ -15,6 +16,7 @@ const totalHours = '≈ 3 години';
     <link rel="stylesheet" href={`${base}assets/style.css`} />
   </head>
   <body>
+    <Menu />
     <header class="lesson-header">
       <div class="lesson-meta">
         <span>Міні-курс</span>
@@ -37,51 +39,12 @@ const totalHours = '≈ 3 години';
       </a>
 
       <div class="course-list-label">Уроки <span class="course-progress" data-progress></span></div>
-      <ul class="course-list">
-        {lessons.map((l) => (
-          <li>
-            <a class="lesson-card" href={lessonHref(l.slug)} data-slug={l.slug}>
-              <span class="lesson-card-num">{l.num}</span>
-              <span class="lesson-card-body">
-                <span class="lesson-card-title">{l.cardTitle}</span>
-                <span class="lesson-card-sub">{l.sub}</span>
-              </span>
-              <span class="lesson-card-check" aria-hidden="true">✓</span>
-              <span class="lesson-card-time">{l.dur}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
+      <LessonList />
     </main>
 
     <footer class="lesson-footer">
       <span>Powodzenia! 🍀 Успіхів у пошуку квартири.</span>
       <a href={cheatHref}>Картка-рятівник →</a>
     </footer>
-
-    <script>
-      // Reflect per-lesson completion (localStorage) on the landing cards.
-      const KEY = 'pl-lessons:completed';
-      const cards = document.querySelectorAll('.lesson-card[data-slug]');
-      const prog = document.querySelector('[data-progress]');
-
-      function apply() {
-        let done = [];
-        try { done = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch {}
-        const set = new Set(done);
-        let count = 0;
-        cards.forEach((c) => {
-          const isDone = set.has(c.getAttribute('data-slug'));
-          c.classList.toggle('is-done', isDone);
-          if (isDone) count++;
-        });
-        if (prog) prog.textContent = count > 0 ? `· пройдено ${count} / ${cards.length}` : '';
-      }
-
-      apply();
-      // Re-apply when returning via back/forward (bfcache restore) or a change in another tab.
-      window.addEventListener('pageshow', apply);
-      window.addEventListener('storage', apply);
-    </script>
   </body>
 </html>

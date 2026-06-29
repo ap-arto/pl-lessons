@@ -1,0 +1,139 @@
+---
+// Mobile-only navigation: a fixed hamburger button that opens a slide-in drawer
+// holding the home link, the full lesson list, and the cheat-sheet link.
+// Rendered on every page, so it also hosts the shared completion-reflection
+// script (page-wide, so it styles the landing's visible list too).
+import { CHEAT } from '@data/lessons';
+import LessonList from './LessonList.astro';
+
+interface Props { currentSlug?: string }
+const { currentSlug } = Astro.props;
+
+const base = import.meta.env.BASE_URL; // '/pl-lessons/'
+const homeHref = base;
+const cheatHref = `${base}${CHEAT.href}`;
+---
+<button
+  class="menu-toggle"
+  type="button"
+  aria-label="Меню"
+  aria-controls="site-menu"
+  aria-expanded="false"
+  data-menu-toggle
+>
+  <span class="menu-toggle-bars" aria-hidden="true"></span>
+</button>
+
+<div class="menu-backdrop" data-menu-backdrop hidden></div>
+
+<nav
+  id="site-menu"
+  class="menu-drawer"
+  aria-label="Навігація курсу"
+  aria-hidden="true"
+  inert
+  data-menu-drawer
+>
+  <div class="menu-drawer-inner">
+    <a class="menu-home" href={homeHref}>← На головну</a>
+    <div class="course-list-label">Уроки</div>
+    <LessonList currentSlug={currentSlug} />
+    <a class="menu-cheat cheat-card" href={cheatHref}>
+      <div class="cheat-title">{CHEAT.label}</div>
+    </a>
+  </div>
+</nav>
+
+<script>
+  // ── Drawer open/close controller ──────────────────────────────────────────
+  const body = document.body;
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const drawer = document.querySelector('[data-menu-drawer]');
+  const backdrop = document.querySelector('[data-menu-backdrop]');
+
+  if (toggle && drawer && backdrop) {
+    let lastFocused: HTMLElement | null = null;
+    const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
+    const focusable = () =>
+      drawer.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+
+    function open() {
+      lastFocused = document.activeElement as HTMLElement;
+      toggle!.setAttribute('aria-expanded', 'true');
+      drawer!.setAttribute('aria-hidden', 'false');
+      drawer!.removeAttribute('inert');
+      (backdrop as HTMLElement).hidden = false;
+      body.classList.add('menu-open');
+      const f = focusable();
+      if (f.length) f[0].focus();
+    }
+
+    function close() {
+      toggle!.setAttribute('aria-expanded', 'false');
+      drawer!.setAttribute('aria-hidden', 'true');
+      drawer!.setAttribute('inert', '');
+      (backdrop as HTMLElement).hidden = true;
+      body.classList.remove('menu-open');
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    toggle.addEventListener('click', () => (isOpen() ? close() : open()));
+    backdrop.addEventListener('click', close);
+    drawer.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!isOpen()) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key === 'Tab') {
+        const f = focusable();
+        if (!f.length) return;
+        const first = f[0];
+        const last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+    // Always start closed after a back/forward (bfcache) restore.
+    window.addEventListener('pageshow', close);
+  }
+</script>
+
+<script>
+  // ── Completion reflection (shared, page-wide) ───────────────────────────────
+  // Greens every completed card (visible list + drawer list) and updates the
+  // landing progress counter. Counts DISTINCT slugs so the doubled card count
+  // on the landing doesn't inflate the denominator.
+  const KEY = 'pl-lessons:completed';
+
+  function apply() {
+    let done: string[] = [];
+    try { done = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch {}
+    const doneSet = new Set(done);
+
+    const cards = document.querySelectorAll<HTMLElement>('.lesson-card[data-slug]');
+    const slugsOnPage = new Set<string>();
+    cards.forEach((c) => {
+      const slug = c.getAttribute('data-slug')!;
+      slugsOnPage.add(slug);
+      c.classList.toggle('is-done', doneSet.has(slug));
+    });
+
+    const prog = document.querySelector('[data-progress]'); // landing only
+    if (prog) {
+      let count = 0;
+      doneSet.forEach((s) => { if (slugsOnPage.has(s)) count++; });
+      prog.textContent = count > 0 ? `· пройдено ${count} / ${slugsOnPage.size}` : '';
+    }
+  }
+
+  apply();
+  window.addEventListener('pageshow', apply);        // bfcache restore
+  window.addEventListener('storage', apply);         // cross-tab
+  window.addEventListener('pl-lessons:changed', apply); // same-tab live update
+</script>

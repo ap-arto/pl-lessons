@@ -670,3 +670,119 @@ h2 {
   color: #fff;
 }
 .lesson-card.is-done .lesson-card-title { color: var(--correct); }
+
+/* =====================================================
+   Mobile menu (hamburger → slide-in drawer)
+   ===================================================== */
+
+/* Hidden by default; only revealed on narrow screens (media query below). */
+.menu-toggle { display: none; }
+
+.menu-toggle-bars,
+.menu-toggle-bars::before,
+.menu-toggle-bars::after {
+  content: '';
+  display: block;
+  width: 1.25rem;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+}
+.menu-toggle-bars { position: relative; }
+.menu-toggle-bars::before { position: absolute; top: -6px; left: 0; }
+.menu-toggle-bars::after  { position: absolute; top:  6px; left: 0; }
+
+/* Backdrop — dims page content behind the open drawer. */
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 70;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+body.menu-open .menu-backdrop { opacity: 1; }
+
+/* Off-canvas drawer; slides in when <body> has .menu-open. */
+.menu-drawer {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(86vw, 360px);
+  z-index: 80;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.12);
+  transform: translateX(100%);
+  transition: transform 0.24s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+body.menu-open .menu-drawer { transform: translateX(0); }
+
+.menu-drawer-inner { padding: 1.25rem 1.25rem 2rem; }
+
+/* Lock background scroll while the drawer is open. */
+body.menu-open { overflow: hidden; }
+
+.menu-home {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 0.4rem 0;
+  margin-bottom: 0.75rem;
+}
+.menu-home:hover { text-decoration: underline; }
+
+/* Cheat link in the drawer reuses .cheat-card styling, just respaced. */
+.menu-cheat { margin-top: 1.5rem; margin-bottom: 0; }
+
+/* Current-lesson highlight. is-done decides the colour (green); is-current adds
+   an orthogonal cue (left accent bar + bold title) so it stays legible on a
+   completed/green card. */
+.lesson-card.is-current {
+  background: var(--accent-light);
+  border-radius: 8px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-bottom-color: transparent;
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.lesson-card.is-current .lesson-card-title { font-weight: 700; }
+
+.lesson-card.is-done.is-current {
+  background: var(--correct-bg);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.lesson-card.is-done.is-current .lesson-card-title {
+  color: var(--correct);
+  font-weight: 700;
+}
+
+/* Show the toggle only on mobile; reserve header space so the fixed button
+   doesn't overlap the header's top row. */
+@media (max-width: 500px) {
+  .menu-toggle {
+    display: inline-flex;
+    position: fixed;
+    top: 0.6rem;
+    right: 0.6rem;
+    z-index: 60;
+    width: 2.6rem;
+    height: 2.6rem;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .lesson-header { padding-top: 2.25rem; }
+}
+
+/* Desktop safety: the drawer/backdrop can never show on wide screens. */
+@media (min-width: 501px) {
+  .menu-drawer,
+  .menu-backdrop { display: none; }
+}
