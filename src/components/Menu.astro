@@ -57,6 +57,24 @@ const cheatHref = `${base}${CHEAT.href}`;
     const focusable = () =>
       drawer.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
 
+    // iOS Safari tints its translucent "glass" toolbars from the content behind
+    // them; while the drawer is open the dark backdrop turns them grey. Pin
+    // theme-color to the page background for the duration, then drop it so the
+    // closed state keeps its default glass look.
+    let themeMeta: HTMLMetaElement | null = null;
+    function pinBarColor(on: boolean) {
+      if (on && !themeMeta) {
+        themeMeta = document.createElement('meta');
+        themeMeta.name = 'theme-color';
+        themeMeta.content =
+          getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#faf9f7';
+        document.head.appendChild(themeMeta);
+      } else if (!on && themeMeta) {
+        themeMeta.remove();
+        themeMeta = null;
+      }
+    }
+
     function open() {
       lastFocused = document.activeElement as HTMLElement;
       toggle!.setAttribute('aria-expanded', 'true');
@@ -64,6 +82,7 @@ const cheatHref = `${base}${CHEAT.href}`;
       drawer!.removeAttribute('inert');
       (backdrop as HTMLElement).hidden = false;
       body.classList.add('menu-open');
+      pinBarColor(true);
       const f = focusable();
       if (f.length) f[0].focus();
     }
@@ -74,6 +93,7 @@ const cheatHref = `${base}${CHEAT.href}`;
       drawer!.setAttribute('inert', '');
       (backdrop as HTMLElement).hidden = true;
       body.classList.remove('menu-open');
+      pinBarColor(false);
       if (lastFocused && lastFocused.focus) lastFocused.focus();
     }
 
