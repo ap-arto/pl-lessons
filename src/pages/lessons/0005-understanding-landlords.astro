@@ -1,5 +1,7 @@
 ---
 import Lesson from '@layouts/Lesson.astro';
+const base = import.meta.env.BASE_URL;
+const L = (s: string) => `${base}lessons/${s}/`;
 ---
 <Lesson slug="0005-understanding-landlords">
 <main>
@@ -122,7 +124,7 @@ import Lesson from '@layouts/Lesson.astro';
   </div>
 
   <div class="callout">
-    <strong>Коли потік занадто швидкий</strong> (а так буде) — це нормально. Дві рятівні фрази, які повністю розберемо в <a href="0006-your-needs-and-confusion.html">Уроці&nbsp;6</a>:<br>
+    <strong>Коли потік занадто швидкий</strong> (а так буде) — це нормально. Дві рятівні фрази, які повністю розберемо в <a href={L('0006-your-needs-and-confusion')}>Уроці&nbsp;6</a>:<br>
     <em>Przepraszam, czy może Pan / Pani mówić wolniej?</em> — Вибачте, можете говорити повільніше?<br>
     <em>Nie zrozumiałem.</em> (ч) / <em>Nie zrozumiałam.</em> (ж) — Я не зрозумів / зрозуміла.
   </div>
